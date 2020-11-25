@@ -13,10 +13,14 @@ class Follower
     end 
 
     def cults 
-        
+        BloodOath.all.select {|cult| cult.follower == self}
     end 
 
-    def join_cult()
+    def join_cult(initiation_date, cult)
+        BloodOath.new(initiation_date, cult, self)
+    end 
+
+    def my_cults_slogan
 
     end 
 
@@ -25,6 +29,14 @@ class Follower
     end 
 
     def self.of_a_certain_age(age)
+        self.all.select {|follower| follower.age >= age}
+    end 
+
+    def self.most_actve
+
+    end 
+
+    def self.top_ten
 
     end 
     
