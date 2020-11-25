@@ -17,16 +17,21 @@ class Cult
         BloodOath.new(initiation_date, self, follower)
     end 
 
+    def the_cult_helper
+        BloodOath.all.select{|oath| oath.cult == self}
+    end 
+
     def cult_population
-        BloodOath.all.select{|oath| oath.cult == self}.length
+        the_cult_helper.length
     end 
 
     def average_age
-
+       all_age = the_cult_helper.map {|cult| cult.follower.age}.sum 
+        all_age.to_f / cult_population
     end 
 
     def my_followers_mottos
-
+        the_cult_helper.map{|cult| cult.follower.life_motto}
     end 
     
     def self.all 
