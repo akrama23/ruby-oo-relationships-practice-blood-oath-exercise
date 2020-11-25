@@ -13,12 +13,12 @@ class Cult
         @@all << self 
     end 
 
-    def recruit_follower(initiation_date, follower)
-        BloodOath.new(initiation_date, self, follower)
-    end 
-
     def the_cult_helper
         BloodOath.all.select{|oath| oath.cult == self}
+    end 
+
+    def recruit_follower(initiation_date, follower)
+        BloodOath.new(initiation_date, self, follower)
     end 
 
     def cult_population
